@@ -12,6 +12,9 @@ plugins {
 
     // Apply the application plugin to add support for building a CLI application.
     id 'application'
+
+    // Version for GIT
+    id 'com.palantir.git-version' version '0.12.3'
 }
 
 repositories {
@@ -32,3 +35,13 @@ application {
     // Define the main class for the application.
     mainClassName = 'p1.App'
 }
+version gitVersion()
+
+import org.apache.tools.ant.filters.*
+
+processResources {
+    filter ReplaceTokens, tokens: [
+            "application.version": version
+    ]
+}
+

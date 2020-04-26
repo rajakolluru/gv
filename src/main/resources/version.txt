@@ -1,1 +1,1 @@
-version=development
+version=@application.version@
