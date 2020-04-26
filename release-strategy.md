@@ -35,10 +35,8 @@ an end user to know the version of the current deployable.
 
 ## To release a major or minor version (from master)
 
-Let us say that we decided to release a major or minor version to production. The following steps need to be
-followed:
-
-1. Tag the release
+Let us say that we decided to release a major or minor version to production. The release needs to be first
+tagged and then the build command must be issued.
 
 All major and minor versions are released with patch version as 1. Let us say we want to release 1.0.1 (major 1 ,
 minor 0 - as we said patch must always be 1 to begin with)
@@ -57,9 +55,24 @@ Now push the version built to PPE for testing. If PPE cannot be used, set up a U
 Once the testing is completed successfully, release this to production by using the same docker image.
 If there are changes required to make the UAT pass, change the code and commit the code.
 Now when the code is built, you will find that the version is no longer 1.0.1 it will be of the form
-1.0.1-1-d789657 instead. This is because the build is issued after modifications are done to the code base.
+1.0.1-1-gd789657.dirty instead. This is because the build is issued after modifications are done to the code base after
+the tag was taken. Keep changing the code base till all the tests pass.
 If the build is tested properly, finally tag the release by incrementing the patch number
-$ git tag -a -m 1.0.2 1.0.2
-
+```
+$ git tag -a -m 1.0.2 1.0.2 # 2 here indicates a patch release
+$ gradle clean build
+```
 This can then be pushed to production after one last round of validation.
+
+## To make a hotfix
+Hotfixes are made on a tagged release by making changes to it in a hot fix branch. At the point of making the
+hot fix, the master may not be suitable. This is because untested changes have come up in the master. To make
+a hot fix, issue the following commands.
+
+```
+$ git checkout -b 1.0.2 1.0.2 # this will checkout the tag 1.0.2 to branch 1.0.2
+
+```
+
+
 

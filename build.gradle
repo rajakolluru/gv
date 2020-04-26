@@ -35,18 +35,8 @@ application {
     // Define the main class for the application.
     mainClassName = 'p1.App'
 }
-// version gitVersion()
 
-def details = versionDetails()
-def v = details.lastTag
-if (details.commitDistance > 0){
-    v = v + "-" + details.commitDistance + "-" + details.gitHash
-}
-if (!details.isCleanTag){
-    v = v + "-dirty"
-}
-
-version v
+version gitVersion()
 
 import org.apache.tools.ant.filters.*
 
