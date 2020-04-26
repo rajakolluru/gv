@@ -70,9 +70,27 @@ hot fix, the master may not be suitable. This is because untested changes have c
 a hot fix, issue the following commands.
 
 ```
-$ git checkout -b 1.0.2 1.0.2 # this will checkout the tag 1.0.2 to branch 1.0.2
+$ git checkout -b b1.0.2 1.0.2 # this will checkout the tag 1.0.2 to branch b1.0.2
+$ <make changes as required>
+$ git add .
+$ git commit -m ""
+$ git tag -a -m 1.0.3 1.0.3
+$ gradle clean build
 
 ```
+
+# Feature Flags
+
+All feature flags must be standardized into one feature file - features.txt that will be in src/main/resources
+This file will be checked into git. At the time of merging the feature branch into master this file might
+need to be changed to toggle the feature flags on or off.
+
+All feature flags must be short lived. It is indeed preferable to get rid of them once they are production ready.
+Distinction must be made between permanent and temporary feature flags. Temporary feature flags must begin  with
+temp- and must be got rid of at the earliest convenient time.
+
+A feature request must be created to get rid of the temp flags in JIRA and must be prioritized once the feature
+is main streamed.
 
 
 
