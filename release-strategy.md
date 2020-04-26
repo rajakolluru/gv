@@ -47,11 +47,19 @@ This should be released from master. First goto the git folder and make sure tha
 with the correct changes that need to be tested. Tag the folder using:
 ```
 $ git tag -a -m "1.0.1" 1.0.1
-$ git describe --dirty
+$ git describe --long --dirty
 1.0.1
+$ gradle clean build
+$ <issue the package command for gradle to generate the docker image>
 ```
 
-Now push the version built to PPE for testing. If PPE is busy, set up a UAT environment and use that for testing.
+Now push the version built to PPE for testing. If PPE cannot be used, set up a UAT environment and use that for testing.
 Once the testing is completed successfully, release this to production by using the same docker image.
-If there are changes required to make the UAT pass, keep building the sources once again. After each commit, the
-output of git describe will change
+If there are changes required to make the UAT pass, change the code and commit the code.
+Now when the code is built, you will find that the version is no longer 1.0.1 it will be of the form
+1.0.1-1-d789657 instead. This is because the build is issued after modifications are done to the code base.
+If the build is tested properly, finally tag the release by incrementing the patch number
+$ git tag -a -m 1.0.2 1.0.2
+
+This can then be pushed to production after one last round of validation.
+
