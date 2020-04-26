@@ -3,6 +3,8 @@
  */
 package p1;
 
+import props.Version;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -12,20 +14,9 @@ public class App {
         return "Hello world.";
     }
 
-    public String getVersion(){
-        Properties prop = new Properties();
-
-        InputStream x = getClass().getClassLoader().getResourceAsStream("version.txt");
-        try {
-            prop.load(x);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return (String)prop.get("version");
-    }
     public static void main(String[] args) {
         App app = new App();
         System.out.println("Greeting = " + app.getGreeting());
-        System.out.println("Version = " + app.getVersion());
+        System.out.println("Version = " + Version.Version());
     }
 }
