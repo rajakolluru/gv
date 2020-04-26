@@ -47,10 +47,7 @@ This should be released from master. First goto the git folder and make sure tha
 with the correct changes that need to be tested. Tag the folder using:
 ```
 $ git tag -a -m "1.0.1" 1.0.1
-```
-This creates a tag based out of the master called 1.0.1
-```
-$ git describe --always --long --dirty
+$ git describe --dirty
 1.0.1
 ```
 
