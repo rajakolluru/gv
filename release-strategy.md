@@ -2,7 +2,7 @@
 
 # The Strategy
 
-[Release Strategy](ReleaseCycle.png)
+[!Release Strategy](ReleaseCycle.png)
 
 ## Branches & Versions
 There will be one permanent branch "master". We will follow semantic versioning everywhere.
