@@ -2,6 +2,8 @@
 
 # The Strategy
 
+[Release Strategy](ReleaseCycle.png)
+
 ## Branches & Versions
 There will be one permanent branch "master". We will follow semantic versioning everywhere.
 All major and minor releases to production happen from master. All patch releases to production happen from
