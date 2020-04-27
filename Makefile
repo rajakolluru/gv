@@ -65,6 +65,10 @@ create-hotfix-latest:
 find-latest-tag:
 	@git describe | cut -d- -f1
 
+## merge-master: Merge the hotfix branch with master. Before this make sure that the hotifx has been tagged and released
+.PHONY: merge-master
+merge-master:
+	@scripts/merge-hotfix-to-master.sh
 
 ## help: type for getting this help
 .PHONY: help
