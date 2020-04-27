@@ -2,15 +2,20 @@
 # Pre-requisites for running this Makefile
 # Make sure that git is installed
 # install gradle
-# java
+# install java (of course)
 
 export PROJECTNAME="pricedomain"
-.DEFAULT_GOAL := all
+.DEFAULT_GOAL := help
 
 ## build: Build the executable with the version extracted from GIT
 .PHONY: build
 build:
 	gradle build
+
+## clean: Clean files
+.PHONY: clean
+clean:
+	gradle clean
 
 ## run: Run the executable using the Application plugin
 .PHONY: run
@@ -33,9 +38,6 @@ create-hotfix: check-tag
 	git checkout -b b$(tag) $(tag)
 	@echo "Created a hotfix branch b$(tag) and checked it out for you"
 
-
-.PHONY: all
-all: help
 
 ## help: type for getting this help
 .PHONY: help
