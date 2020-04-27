@@ -39,6 +39,26 @@ create-hotfix: check-tag
 	git checkout -b b$(tag) $(tag)
 	@echo "Created a hotfix branch b$(tag) and checked it out for you"
 
+## increment-major: Increment the Major version number
+.PHONY: increment-major
+increment-major:
+	@scripts/increment-tag.sh major
+
+## increment-minor: Increment the Minor version number
+.PHONY: increment-minor
+increment-minor:
+	@scripts/increment-tag.sh minor
+
+## increment-patch: Increment the Patch version number
+.PHONY: increment-patch
+increment-patch:
+	@scripts/increment-tag.sh patch
+
+## create-hotfix-latest: Creates a hotfix for the latest tag
+.PHONY: create-hotfix-latest
+create-hotfix-latest:
+	@scripts/make-hotfix-branch.sh
+
 
 ## find-latest-tag: Finds the latest tag for this project
 .PHONY: find-latest-tag
