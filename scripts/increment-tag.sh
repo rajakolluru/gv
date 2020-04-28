@@ -14,6 +14,8 @@ git describe | cut -d- -f1  |
 
     ver="$major.$minor.$patch"
 
+    # first check that there are no pending commits.
+    git status | grep nothing
     git tag -a -m $ver $ver
     echo "Successfully created a tag $ver"
     exit 0
