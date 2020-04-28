@@ -23,7 +23,7 @@ git describe | cut -d- -f1  |
     fi
 
     git tag -a -m $ver $ver
-    read -p  "Successfully created a tag $ver. Want me to build the deployable?" yes
+    read -p "Successfully created a tag $ver. Want me to build the deployable?"  yes
     if [[ $yes == y* ]]
     then
         echo "Building the executable for you."
