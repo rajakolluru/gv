@@ -70,6 +70,21 @@ find-latest-tag:
 merge-master:
 	@scripts/merge-hotfix-to-master.sh
 
+## list-tags-origin: List all the tags in origin
+.PHONY: list-tags-origin
+list-tags-origin:
+	@git ls-remote --tags origin | grep -v '\}' | cut -d/ -f3
+
+## delete-origin-tag: Delete a tag at the origin
+.PHONY: delete-origin-tag
+delete-origin-tag: check-tag
+	git push --delete origin $(tag)
+
+## delete-local-tag: Delete a local tag
+.PHONY: delete-local-tag
+delete-local-tag: check-tag
+	git tag -d $(tag)
+
 ## help: type for getting this help
 .PHONY: help
 help: Makefile
