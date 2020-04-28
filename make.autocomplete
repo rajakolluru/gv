@@ -1,0 +1,9 @@
+make | awk '(NF>2){ print $1 }' | grep -v -i choose |
+{
+	while read R
+	do
+		a="$R $a"
+	done
+	echo $a
+	complete -W "$a" make
+}
