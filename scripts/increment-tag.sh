@@ -15,8 +15,20 @@ git describe | cut -d- -f1  |
     ver="$major.$minor.$patch"
 
     # first check that there are no pending commits.
-    git status | grep nothing
+    items_to_commit=$(git status --porcelain=1 | wc -l)
+    if (( items_to_commit != 0 ))
+    then
+        echo "There are pending commit items. Please commit them before tagging."
+        exit 2
+    fi
+
     git tag -a -m $ver $ver
-    echo "Successfully created a tag $ver"
+    read -p  "Successfully created a tag $ver. Want me to build the deployable?" yes
+    if [[ $yes == y* ]]
+    then
+        echo "Building the executable for you."
+        gradle clean build
+    fi
+
     exit 0
 }
