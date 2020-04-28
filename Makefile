@@ -60,9 +60,9 @@ create-hotfix-latest:
 	@scripts/make-hotfix-branch.sh
 
 
-## find-latest-tag: Finds the latest tag for this project
-.PHONY: find-latest-tag
-find-latest-tag:
+## find-latest-local-tag: Finds the latest tag for this project
+.PHONY: find-latest-local-tag
+find-latest-local-tag:
 	@git describe | cut -d- -f1
 
 ## merge-master: Merge the hotfix branch with master. Before this make sure that the hotifx has been tagged and released
@@ -70,9 +70,14 @@ find-latest-tag:
 merge-master:
 	@scripts/merge-hotfix-to-master.sh
 
-## list-tags-origin: List all the tags in origin
-.PHONY: list-tags-origin
-list-tags-origin:
+## list-local-tags: List all the tags in origin
+.PHONY: list-local-tags
+list-local-tags:
+	@git tag
+
+## list-origin-tags: List all the tags in origin
+.PHONY: list-origin-tags
+list-origin-tags:
 	@git ls-remote --tags origin | grep -v '\}' | cut -d/ -f3
 
 ## delete-origin-tag: Delete a tag at the origin
