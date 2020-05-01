@@ -38,6 +38,10 @@ application {
 
 version gitVersion()
 
+// Do resource filtering. i.e. for all resource files apply the following logic:
+// look for the tokens below and substitute them for the values. This will ensure that all
+// resource files which have used @application.version@ will now get replaced with the version
+// derived from git 
 import org.apache.tools.ant.filters.*
 
 processResources {
