@@ -16,6 +16,7 @@ public class App {
 
     public static void main(String[] args) {
         App app = new App();
+        System.out.println("hello world");
         System.out.println("Greeting = " + app.getGreeting());
         System.out.println("Version = " + Version.Version());
     }
